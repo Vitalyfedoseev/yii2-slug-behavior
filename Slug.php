@@ -133,7 +133,7 @@ class Slug extends SluggableBehavior
      * @return bool
      * @throws InvalidConfigException
      */
-    private function validateSlug($slug)
+    protected function validateSlug($slug)
     {
         $validator = Yii::createObject(array_merge(['class' => UniqueValidator::className()], $this->uniqueValidator));
 
@@ -151,7 +151,7 @@ class Slug extends SluggableBehavior
      * @param int $iteration
      * @return string
      */
-    private function generateUniqueSlug($baseSlug, $iteration)
+    protected function generateUniqueSlug($baseSlug, $iteration)
     {
         return is_callable($this->uniqueSlugGenerator)
             ? call_user_func($this->uniqueSlugGenerator, $baseSlug, $iteration, $this->owner)
